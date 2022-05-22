@@ -31,3 +31,27 @@
 
 ### 기본 객체들
 
+```html
+//HTTP요청 파라미터 접근: param
+${param.paramData}
+
+//세션 접근: session
+${session.sessionData}
+
+//빈 접근: @
+${@helloBean.hello('Spring!')}
+
+```
+
+### 유틸리티 객체와 날짜
+
+https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#expression-utility-objects
+https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expression-utility-objects
+
+#### 날짜
+```html
+<span th:text=
+   "${#temporals.format(localDateTime, 'yyyy-MM-dd HH:mm:ss')}">
+</span>
+```
+
