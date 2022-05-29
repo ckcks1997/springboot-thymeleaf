@@ -27,6 +27,23 @@
 ```
 다음과 같이 th:with를 이용해 지역변수를 선언하고 사용할 수 있다.
 
+#### 주의할 점
+
+```thymeleafexpressions
+    <span th:text="Hello"> </span>
+    
+    //아래는 에러가 발생한다.
+    <span th:text="Hello world!"> </span> 
+    
+    //띄어쓰기가 있는 문자열은 싱글 따옴표(\')로 감싸야 한다.)
+    <span th:text="'Hello world!'"> </span> 
+    
+    //다음과 같은 표현식도 유효하다.
+    <span th:text="'Hello' +${param.val}"> </span>
+    <span th:text="|Hello ${param.val}|"> </span>
+    
+```
+
 ---
 
 ### 기본 객체들
@@ -54,4 +71,28 @@ https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#appendix-b-expre
    "${#temporals.format(localDateTime, 'yyyy-MM-dd HH:mm:ss')}">
 </span>
 ```
+
+### URL링크
+URL링크는```<a th:href="@{ 위치 }">```와 같은 방식으로 사용한다.
+```thymeleafexpressions
+    1. 경로만 표현
+    <li><a th:href="@{/hello}">basic url</a></li>
+    
+    2. url값 주입방식
+    <li><a th:href="@{/hello/{val}(val=${param.val})}">param 값 url</a></li> 
+    
+    3. url값 주입방식2
+    <li><a th:href="@{/hello/{param1}/{param2}(param1=${param1}, param2=${param2})}">path variable</a></li>
+    
+    4. get방식으로 param값 주입(별도의 {}값 지정이 없으면 param값으로 주입된다.)
+    <li><a th:href="@{/hello(param1=${param1}, param2=${param2})}">hello query param</a></li>
+    
+    5. 혼합방식
+    <li><a th:href="@{/hello/{param1}(param1=${param1}, param2=${param2})}">path variable + query parameter</a></li>
+```
+
+
+
+
+
 
